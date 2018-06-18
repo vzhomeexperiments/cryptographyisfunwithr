@@ -1,7 +1,7 @@
 # R Script to Encrypt/Decrypt information
 # ONLY FOR TRAINING PURPOSES
 # UDEMY Course: "Cryptography is more fun with R!"
-# (C) 2018 Vladimir Zhbanko, vz.home.experiments@gmail.com
+# (C) 2018 Vladimir Zhbanko, https://vladdsm.github.io/myblog_attempt/index.html
 # Enjoying the code? Join the course https://udemy.com/keep-secret-under-control
 
 ### Used Libraries:
