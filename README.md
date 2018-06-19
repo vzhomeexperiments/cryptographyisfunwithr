@@ -8,3 +8,5 @@ code for tutorial webinar on cryptography
 5. Decrypting
 6. Hashing
 7. Conclusion
+
+*DISCLAIMER:* Risk of loosing data! Make sure to know what you do at any time. Only for educational purposes. Use only with dummy data.
