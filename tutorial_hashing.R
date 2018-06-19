@@ -18,7 +18,7 @@ library(tidyverse)
 # Hashing -> one way cryptographic process
 "hello world" %>% md5()
 "hello world" %>% md5(key = "nothing")
-"hello world" %>% md5(key = serialize(cars,connection = NULL))
+"hello world" %>% md5(key = serialize(file("README.md"),connection = NULL))
 
 # -> try the same with sha512() 
 
@@ -26,7 +26,6 @@ library(tidyverse)
 
 # how to check if the file was changed? (run code again after changing the file)
 file("README.md") %>% md5()
-
 
 # this command will download the file and calculate md5 hash
 md5(url("https://cran.r-project.org/bin/windows/base/R-3.5.0-win.exe"))

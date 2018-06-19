@@ -29,3 +29,5 @@ library(tidyverse)
   encrypt_envelope("keys/private.pem") %>% 
   # write encrypted data to File
   write_rds("message.enc")
+
+# do yourself: encrypt cars dataset using above snippet, create object "cars.enc"

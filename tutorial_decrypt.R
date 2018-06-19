@@ -20,10 +20,11 @@ secret_encrypted <- read_rds("message.enc")
 decrypt_envelope(data = secret_encrypted$data,
                  iv = secret_encrypted$iv,
                  session = secret_encrypted$session,
-                 key = "keys/private.pem",
-                 password = "") %>% 
+                 key = "keys/private.pem", password = "") %>% 
   # getting back original object
   unserialize() 
 
 # remove secret_encrypted object
 rm(secret_encrypted)
+
+# decrypt cars.enc object using above code snippet!
