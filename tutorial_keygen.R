@@ -2,6 +2,7 @@
 # ONLY FOR TRAINING PURPOSES
 # UDEMY Course: "Cryptography is more fun with R!"
 # (C) 2018 Vladimir Zhbanko, https://vladdsm.github.io/myblog_attempt/index.html
+# Get this code here: https://github.com/vzhomeexperiments/cryptographyisfunwithr
 # Enjoying the code? Join the course https://www.udemy.com/keep-your-secrets-under-control/?couponCode=KEEP-SECRET-10
 
 ### Used Libraries:
@@ -15,10 +16,11 @@ library(tidyverse)
 #### GENERATE RSA KEYS ####
 if(!exists("keys")){dir.create("keys")}
 # generate your private key (NB: make sure to do back up copy!!!)
-rsa_keygen(bits = 5099) %>% 
+rsa_keygen() %>% 
   write_pem(path = "keys/private.pem", password = "")
 
 # generate your public key (NB: optional. Use Private Key to encrypt/decrypt)
+# note: typical location of keys on PC is: 'C:/Users/username/.ssh'
 read_key(file = "keys/private.pem", password = "") %>% 
   # extract element of the list and write to file
   `[[`("pubkey") %>% write_pem("keys/public.pub")
