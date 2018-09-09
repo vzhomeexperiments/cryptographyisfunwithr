@@ -16,7 +16,7 @@ library(tidyverse)
 #### GENERATE RSA KEYS ####
 if(!exists("keys")){dir.create("keys")}
 # generate your private key (NB: make sure to do back up copy!!!)
-rsa_keygen() %>% 
+rsa_keygen(bits = 3333) %>% 
   write_pem(path = "keys/private.pem", password = "")
 
 # generate your public key (NB: optional. Use Private Key to encrypt/decrypt)

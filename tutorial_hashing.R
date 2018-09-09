@@ -16,8 +16,8 @@ library(tidyverse)
 # help for hashing function ?md5
 
 # Hashing -> one way cryptographic process
-"hello world" %>% md5()
-"hello world" %>% md5(key = "nothing")
+"John" %>% md5()
+"John" %>% md5(key = "nothing")
 "hello world" %>% md5(key = serialize(file("README.md"),connection = NULL))
 
 # -> try the same with sha512() 
@@ -27,10 +27,34 @@ library(tidyverse)
 # how to check if the file was changed? (run code again after changing the file)
 file("README.md") %>% md5()
 
-# this command will download the file and calculate md5 hash
-md5(url("https://cran.r-project.org/bin/windows/base/R-3.5.0-win.exe"))
+# how to generate unique password?
 
-# obtained value:            md5 d3:f5:79:b3:aa:cf:df:45:a0:08:df:33:20:cb:36:15
-#value from cran.r-project.org: d3f579b3aacfdf45a008df3320cb3615 *R-3.5.0-win.exe
+# generate password string the way you can reproduce and more secure
+"specific string" %>% sha512(key = "123456")
 
-# create your own algorithm to generate random passwords
+# generate unique password, introducing randomness of the current time (you must know exact date and exact time to reproduce)
+paste(Sys.Date(), "Cryptography is more fun using R!") %>% 
+  as.character.Date() %>% 
+  sha512(key = as.character(Sys.time()))
+
+# generate password but take your desired piece start/end position and write to the file
+Sys.Date() %>% as.character.Date() %>% sha512(key = as.character(Sys.time())) %>%
+  substring(first = 3, last = 23) %>% as.data.frame.character() %>% write_tsv("p.txt")
+
+### what about function? ###
+generate_password <- function(salt = "Cryptography is cool!",
+                              pass_begin = 3, pass_end = 23, 
+                              file_name = "p.txt") {
+  require(openssl)
+  require(tidyverse)
+  paste(Sys.Date(), salt) %>% 
+    as.character.Date() %>%
+    sha512(key = as.character(Sys.time())) %>%
+    substring(first = pass_begin, last = pass_end) %>%
+    as.data.frame.character() %>%
+    write_tsv(file_name)
+}
+
+# using function
+generate_password(salt = "hello",
+                  1, 10, "my_password.txt")
